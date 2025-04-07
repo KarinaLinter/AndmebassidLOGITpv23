@@ -1,1 +1,18 @@
+Andmed ja informatsioon
+Amdmed - msee on töödeldud informatsioon
+Haldus - Администривание/обслуживание
+Andmebaaside haldussüsteemid - системы администрироваия БД - программы для работы с БД -
+MS SQL Server, Oracle, mariaDB/phpMyadmin, Access
 
+-------------------------------------------
+tabel/tabelid
+rida/read - строка/строки
+veerg/veerud - столбец/столбцы
+rida=kirjed - записи
+veerg=väli - поля
+päring - запрос - QUERY
+käivita päring - запусти запрос - EXECUTE QUERY!
+Värskenda/uuenda - обновить
+Kustuta - удалить
+Loo - создать
+Lisa - добавить
