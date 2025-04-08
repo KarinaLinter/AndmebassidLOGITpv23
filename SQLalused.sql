@@ -10,9 +10,9 @@ CREATE DATABASE linterLOGITpv23;
 USE linterLOGITpv23;
 
 --tabeli loomine
---identity(1,1) - ise täidab tabeli 1,2,3,...
+--AUTO_INCREMENT - ise täidab tabeli 1,2,3,...
 CREATE TABLE inimene(
-inimeneID int PRIMARY KEY identity(1,1),
+inimeneID int PRIMARY KEY AUTO_INCREMENT,
 nimi varchar(50) unique,
 sunniaeg date,
 telefon char(12),
@@ -44,7 +44,7 @@ DELETE FROM inimene;
 WHERE inimeneID=2;
 
 CREATE TABLE elukoht(
-elukohtID int PRIMARY KEY identity(1,1),
+elukohtID int PRIMARY KEY AUTO_INCREMENT,
 elukoht varchar(50) UNIQUE,
 maakond varchar(50)
 );
@@ -81,7 +81,7 @@ ON i.elukohtID=e.elukohtID;
 
 --tabeli auto lomine
 CREATE TABLE autod(
-autodID int PRIMARY KEY identity(1,1),
+autodID int PRIMARY KEY AUTO_INCREMENT,
 autodNr varchar(50) UNIQUE,
 mudell varchar(50),
 mark varchar(50),
