@@ -1,0 +1,90 @@
+CREATE DATABASE proceduurLoGIT;
+Use proceduurLoGIT;
+
+CREATE TABLE filmid(
+filmID int primary key identity(1,1),
+filmNimi varchar(30) unique,
+filmPikkus int,
+rezisoor varchar(30)
+);
+
+SELECT * FROM filmid;
+
+INSERT INTO filmid (filmNimi, filmPikkus, rezisoor)
+VALUES ('Minecraft', 120, 'Jared hess');
+
+--protseduur mis lisab uus film ja kohe näitab tabelis (INSERT, SELECT)
+CREATE PROCEDURE lisaFilm
+@nimi varchar(30),
+@pikkus int,
+@rezisoor varchar(30)
+AS
+BEGIN
+INSERT INTO filmid(filmNimi, filmPikkus, rezisoor)
+VALUES (@nimi, @pikkus, @rezisoor);
+SELECT * FROM filmid;
+END;
+
+--kutse
+EXEC lisaFilm 'Bob ja Bobek', 120, 'testtest';
+
+DROP Procedure lisaFilm;
+
+--Proceduur, mis kustutab filmi filmID järgi (DELETE, SELECT)
+CREATE PROCEDURE kustutaFilm
+@id int
+AS
+BEGIN
+SELECT * from filmid;
+DELETE FROM filmid WHERE filmID=@id;
+SELECT * from filmid;
+END;
+
+--kutse
+EXEC kustutaFilm 1;
+EXEC kustutaFilm @id=1;
+
+---
+USE [proceduurLoGIT]
+GO
+/****** Object:  StoredProcedure [dbo].[lisaFilm]    Script Date: 14.04.2025 10:55:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[lisaFilm]
+@nimi varchar(30),
+@pikkus int,
+@rezisoor varchar(30)
+AS
+BEGIN
+INSERT INTO filmid(filmNimi, filmPikkus, rezisoor)
+VALUES (@nimi, @pikkus, @rezisoor);
+SELECT * FROM filmid ORDER by filmPikkus DESC;
+END;
+---
+
+
+--proeduur, mis uuendab filmiPikkus
+CREATE PROCEDURE uuendaFilmiPikkus
+AS
+BEGIN
+SELECT * FROM filmid;
+UPDATE filmid SET filmPikkus=filmPikkus*1.05;
+SELECT * FROM filmid;
+END
+
+--kutse
+EXEC uuendaFilmiPikkus;
+
+CREATE PROCEDURE uuendaFilmiPikkus2
+@arv decimal(5,2)
+AS
+BEGIN
+SELECT * FROM filmid;
+UPDATE filmid SET filmPikkus=filmPikkus*@arv;
+SELECT * FROM filmid;
+END
+
+--kutse
+EXEC uuendaFilmiPikkus2 @arv=0.5;
